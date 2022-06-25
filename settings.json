@@ -1,0 +1,5 @@
+{
+    "SerialPort": "COM21",
+    "BaudRate": 115200,
+    "SerialTimeout": 0
+}
