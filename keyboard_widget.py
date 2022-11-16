@@ -16,7 +16,7 @@ class KeyboardLabel(QLabel):
         self.setPixmap(self.keyboard_image)
 
     def mousePressEvent(self, event: QMouseEvent) -> None:
-        key = self._get_key_from_moise_pos(event.pos())
+        key = self._get_key_from_mouse_pos(event.pos())
         if key is not None:
             print(key)
             rect = self.keyboard_meta[key]
@@ -39,7 +39,7 @@ class KeyboardLabel(QLabel):
             self.keyboard_image = QPixmap(os.path.normpath(os.path.join('images', 'keyboard.png')))
             self.setPixmap(self.keyboard_image)
 
-    def _get_key_from_moise_pos(self, mouse_pos):
+    def _get_key_from_mouse_pos(self, mouse_pos):
         mouse_x = mouse_pos.x()
         mouse_y = mouse_pos.y()
         for key in self.keyboard_meta:
@@ -48,7 +48,7 @@ class KeyboardLabel(QLabel):
                 return key
 
 
-class KeyboardWidget(QWidget):
+class KeyboardWidget(QScrollArea):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.keyboard_meta = []
@@ -56,18 +56,6 @@ class KeyboardWidget(QWidget):
         self.init_ui()
 
     def init_ui(self):
-        grid = QGridLayout(self)
+        self.setWidget(KeyboardLabel())
+        self.setAlignment(Qt.AlignHCenter | Qt.AlignVCenter);
 
-        grid.addWidget(KeyboardLabel(), 1, 1)
-
-        # Define column stretches (0 - spacer, 1 - keyboard, 2 - spacer)
-        grid.setColumnStretch(0, 1)
-        grid.setColumnStretch(1, 0)
-        grid.setColumnStretch(2, 1)
-
-        # Define row stretches (0 - spacer, 1 - keyboard, 2 - spacer)
-        grid.setRowStretch(0, 1)
-        grid.setRowStretch(1, 0)
-        grid.setRowStretch(2, 1)
-
-        self.setLayout(grid)

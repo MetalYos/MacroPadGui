@@ -13,7 +13,7 @@ class MainWidget(QSplitter):
 
         self.addWidget(top_frame)
         self.addWidget(bottom_frame)
-        self.setSizes([100, 200])
+        self.setSizes([100, 300])
         self.setChildrenCollapsible(False)
 
     @staticmethod

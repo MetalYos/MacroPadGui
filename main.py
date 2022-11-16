@@ -27,6 +27,7 @@ class MainWindow(QMainWindow):
         program_btn = QPushButton(text='Program')
         program_btn.setEnabled(False)
         program_btn.setMinimumWidth(200)
+        program_btn.setMinimumHeight(50)
         hbox.addStretch()
         hbox.addWidget(program_btn)
         program_frame.setLayout(hbox)
