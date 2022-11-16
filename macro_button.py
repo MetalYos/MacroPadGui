@@ -15,6 +15,7 @@ class MacroButton(QLabel):
         self.regular_image = QPixmap(os.path.normpath(os.path.join('images', 'keycap.png')))
         self.regular_image = self.regular_image.scaledToWidth(self._button_width)
         self.hovered_image = QPixmap(os.path.normpath(os.path.join('images', 'keycap-hover.png')))
+        self.hovered_image = self.hovered_image.scaledToWidth(self._button_width)
         self.idle_image = self.regular_image
 
         self.setMouseTracking(True)
