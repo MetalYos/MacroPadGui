@@ -2,12 +2,20 @@ import os
 from PySide6 import QtCore
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
-from custom_events import MacroButtonClicked
 
+class MacroButtonClicked(QtCore.QObject):
+    clicked = QtCore.Signal((int, int))
+
+    def __init__(self):
+        super().__init__()
 
 class MacroButton(QLabel):
     def __init__(self, row, col):
         super().__init__()
+        
+        self.selected_key = None
+        self.selected_macro = None
+
         self._button_width = 96
         self.macro_button_clicked = MacroButtonClicked()
         self.clicked = self.macro_button_clicked.clicked

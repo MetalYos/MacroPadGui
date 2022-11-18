@@ -1,7 +1,9 @@
 from enum import IntEnum, auto
 
 class Events(IntEnum):
-    EVENT_BIND_BUTTON_CLICKED = 0
+    EVENT_MACRO_BUTTON_SELECTED = 0
+    EVENT_BIND_BUTTON_CLICKED = auto()
+    EVENT_KEYBOARD_KEY_SELECTED = auto()
     EVENT_NONE = auto()
 
 class PubSub():
@@ -27,3 +29,6 @@ class PubSub():
 
     def clear_all(self):
         self.subscribers = {}
+
+
+pubsub_service = PubSub()

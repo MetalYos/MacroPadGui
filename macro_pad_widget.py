@@ -1,7 +1,7 @@
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
 from macro_button import MacroButton
-
+from pubsub import Events, pubsub_service
 
 class MacroPadWidget(QWidget):
     def __init__(self, parent=None):
@@ -64,10 +64,13 @@ class MacroPadWidget(QWidget):
         self.selected_button.click()
 
         self.macro_pad_bind_button.setEnabled(True) 
+
+        pubsub_service.publish(Events.EVENT_MACRO_BUTTON_SELECTED, self.selected_button)
         print(f'Clicked! ({row}, {col})')
 
     def macro_pad_bind_button_clicked(self):
         print(f'Bind! ({self.selected_button.row}, {self.selected_button.col})')
+        pubsub_service.publish(Events.EVENT_BIND_BUTTON_CLICKED, self.selected_button)
 
     def mousePressEvent(self, ev: QMouseEvent) -> None:
         self.is_pressed = True
