@@ -34,13 +34,11 @@ class MainWidget(QSplitter):
         return bottom_frame
 
     def bind_button_clicked_event_handler(self, selected_button):
-        print(f'({selected_button.row}, {selected_button.col})')
         self.bottom_frame.setEnabled(True)
         self.top_frame.setEnabled(False)
         self.selected_button = selected_button
 
     def keyboard_key_selected_event_handler(self, key):
-        print(f'{key} was selected!')
         self.bottom_frame.setEnabled(False)
         self.top_frame.setEnabled(True)
         self.selected_button.selected_key = key

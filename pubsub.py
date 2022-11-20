@@ -19,6 +19,14 @@ class PubSub():
 
         self.subscribers[event].append(event_handler)
 
+    def unsubscribe(self, event, event_handler):
+        if event not in Events:
+            return
+
+        if event in self.subscribers:
+            if event_handler in self.subscribers[event]:
+                self.subscribers[event].remove(event_handler)
+
     def publish(self, event, data):
         if event in self.subscribers:
             handlers = self.subscribers[event]
