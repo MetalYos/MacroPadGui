@@ -19,6 +19,7 @@ class KeyboardLabel(QLabel):
         key = self._get_key_from_mouse_pos(event.pos())
         if key is not None:
             self._draw_selected_key_rect(key)
+            print(f'{key}')
 
             # Publish event to indicate that a key was selected
             pubsub_service.publish(Events.EVENT_KEYBOARD_KEY_SELECTED, key)
